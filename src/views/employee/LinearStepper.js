@@ -825,7 +825,7 @@ const LinaerStepper = () => {
         };
         console.log(selectFile);
         axios
-            .post('https://veryeasyhr.herokuapp.com/api/v1/employees/csv', csvData, config)
+            .post('/api/v1/employees/csv', csvData, config)
             .then((res) => {
                 console.log(res);
             })
@@ -847,7 +847,7 @@ const LinaerStepper = () => {
         console.log(data);
         if (activeStep === steps.length - 1) {
             dispatch(addEmployee(methods.getValues()));
-            fetch('https://veryeasyhr.herokuapp.com/api/v1/employees/new')
+            fetch('/api/v1/employees/new')
                 .then((data) => data.json())
                 .then((res) => {
                     console.log(res);

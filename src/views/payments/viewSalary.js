@@ -28,12 +28,9 @@ function daysInMonth(month, year) {
 const getAttendence = async (employee) => {
     const date = new Date();
     const { data } = await axios
-        .get(
-            `https://veryeasyhr.herokuapp.com/api/v1/employee/attendance/mylist/${date.getMonth() + 1}/${date.getFullYear()}/${employee}`,
-            {
-                withCredentials: true
-            }
-        )
+        .get(`/api/v1/employee/attendance/mylist/${date.getMonth() + 1}/${date.getFullYear()}/${employee}`, {
+            withCredentials: true
+        })
         .then((data) => {
             console.log(data);
             return data;
@@ -112,14 +109,9 @@ const ViewSalary = () => {
 
     React.useEffect(() => {
         axios
-            .get(
-                `https://veryeasyhr.herokuapp.com/api/v1/employee/attendance/mylist/${
-                    date.getMonth() + 1
-                }/${date.getFullYear()}?limit=${9999999999}`,
-                {
-                    withCredentials: true
-                }
-            )
+            .get(`/api/v1/employee/attendance/mylist/${date.getMonth() + 1}/${date.getFullYear()}?limit=${9999999999}`, {
+                withCredentials: true
+            })
             .then((data) => {
                 setemployeeAttendance(data.data.employeesAttendance);
                 console.log(data);

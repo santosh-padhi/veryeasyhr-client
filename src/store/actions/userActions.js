@@ -50,7 +50,7 @@ export const login = (email, password) => async (dispatch) => {
                 withCredentials: true
             }
         };
-        const { data } = await axios.post('https://veryeasyhr.herokuapp.com/api/v1/login', { email, password }, config);
+        const { data } = await axios.post('/api/v1/login', { email, password }, config);
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data.user
@@ -75,7 +75,7 @@ export const register = (userData) => async (dispatch) => {
             }
         };
 
-        const { data } = await axios.post('https://veryeasyhr.herokuapp.com/api/v1/admin/register', userData, config);
+        const { data } = await axios.post('/api/v1/admin/register', userData, config);
 
         dispatch({
             type: REGISTER_USER_SUCCESS,
@@ -94,7 +94,7 @@ export const loadUser = () => async (dispatch) => {
     try {
         dispatch({ type: LOAD_USER_REQUEST });
 
-        const { data } = await axios.get('https://veryeasyhr.herokuapp.com/api/v1/currentUser', { withCredentials: true });
+        const { data } = await axios.get('/api/v1/currentUser', { withCredentials: true });
 
         dispatch({
             type: LOAD_USER_SUCCESS,
@@ -120,7 +120,7 @@ export const updateProfile = (userData) => async (dispatch) => {
             }
         };
 
-        const { data } = await axios.put('https://veryeasyhr.herokuapp.com/api/v1/user_profile/edit_profile', userData, config);
+        const { data } = await axios.put('/api/v1/user_profile/edit_profile', userData, config);
 
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
@@ -146,7 +146,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
             }
         };
 
-        const { data } = await axios.put('https://veryeasyhr.herokuapp.com/api/v1/password/update_password', passwords, config);
+        const { data } = await axios.put('/api/v1/password/update_password', passwords, config);
 
         dispatch({
             type: UPDATE_PASSWORD_SUCCESS,
@@ -172,7 +172,7 @@ export const forgotPassword = (email) => async (dispatch) => {
             }
         };
 
-        const { data } = await axios.post('https://veryeasyhr.herokuapp.com/api/v1/password/forgot', email, config);
+        const { data } = await axios.post('/api/v1/password/forgot', email, config);
 
         dispatch({
             type: FORGOT_PASSWORD_SUCCESS,
@@ -198,7 +198,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
             }
         };
 
-        const { data } = await axios.put(`https://veryeasyhr.herokuapp.com/api/v1/password/reset/${token}`, passwords, config);
+        const { data } = await axios.put(`/api/v1/password/reset/${token}`, passwords, config);
 
         dispatch({
             type: NEW_PASSWORD_SUCCESS,
@@ -215,7 +215,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 // Logout user
 export const logout = () => async (dispatch) => {
     try {
-        await axios.get('https://veryeasyhr.herokuapp.com/api/v1/logout', { withCredentials: true });
+        await axios.get('/api/v1/logout', { withCredentials: true });
 
         dispatch({
             type: LOGOUT_SUCCESS
@@ -233,12 +233,9 @@ export const allUsers = (page, sort, limit) => async (dispatch) => {
     try {
         dispatch({ type: ALL_USERS_REQUEST });
 
-        const { data } = await axios.get(
-            `https://veryeasyhr.herokuapp.com/api/v1/admin/all_users?page=${page}&sorted=${sort}&limit=${limit}`,
-            {
-                withCredentials: true
-            }
-        );
+        const { data } = await axios.get(`/api/v1/admin/all_users?page=${page}&sorted=${sort}&limit=${limit}`, {
+            withCredentials: true
+        });
         console.log(data);
         dispatch({
             type: ALL_USERS_SUCCESS,
@@ -264,7 +261,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
             }
         };
 
-        const { data } = await axios.put(`https://veryeasyhr.herokuapp.com/api/v1/admin/user/${id}`, userData, config);
+        const { data } = await axios.put(`/api/v1/admin/user/${id}`, userData, config);
 
         dispatch({
             type: UPDATE_USER_SUCCESS,
@@ -283,7 +280,7 @@ export const deleteUser = (id) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_USER_REQUEST });
 
-        const { data } = await axios.delete(`https://veryeasyhr.herokuapp.com/api/v1/admin/user/${id}`, { withCredentials: true });
+        const { data } = await axios.delete(`/api/v1/admin/user/${id}`, { withCredentials: true });
 
         dispatch({
             type: DELETE_USER_SUCCESS,

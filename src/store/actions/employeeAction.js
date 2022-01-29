@@ -65,7 +65,7 @@ export const addEmployee = (userData) => async (dispatch) => {
                 leaveNominee: userData.leaveNominee
             }
         };
-        const { data } = await axios.post('https://veryeasyhr.herokuapp.com/api/v1/employees/new', y, config);
+        const { data } = await axios.post('/api/v1/employees/new', y, config);
 
         dispatch({
             type: ADD_EMPLOYEE_SUCCESS,
@@ -85,7 +85,7 @@ export const myEmployee = (page) => async (dispatch) => {
     try {
         dispatch({ type: MY_EMPLOYEE_REQUEST });
 
-        const { data } = await axios.get(`https://veryeasyhr.herokuapp.com/api/v1/employees/mylist?page=${page}`, {
+        const { data } = await axios.get(`/api/v1/employees/mylist?page=${page}`, {
             withCredentials: true
         });
         console.log(data);
@@ -111,7 +111,7 @@ export const addRoles = (userData) => async (dispatch) => {
             }
         };
 
-        const { data } = await axios.post('https://veryeasyhr.herokuapp.com/api/v1/admin/register', userData, config);
+        const { data } = await axios.post('/api/v1/admin/register', userData, config);
         dispatch({
             type: ADD_ROLES_SUCCESS,
             payload: data

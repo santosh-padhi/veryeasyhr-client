@@ -76,7 +76,7 @@ const AddAttendance = () => {
         };
         console.log(selectFile);
         axios
-            .post('https://veryeasyhr.herokuapp.com/api/v1/employee/attendance/csv', csvData, config)
+            .post('/api/v1/employee/attendance/csv', csvData, config)
             .then((res) => {
                 console.log(res);
                 settext('File upload successfully!');

@@ -28,7 +28,7 @@ export const addAttendence = (userData) => async (dispatch) => {
             }
         };
 
-        const { data } = await axios.post('https://veryeasyhr.herokuapp.com/api/v1/employee/attendance', userData, config);
+        const { data } = await axios.post('/api/v1/employee/attendance', userData, config);
 
         dispatch({
             type: ADD_ATTENDENCE_SUCCESS,
@@ -48,7 +48,7 @@ export const myAttendence = (page, month, year) => async (dispatch) => {
     try {
         dispatch({ type: GET_ATTENDENCE_REQUEST });
 
-        const x = await axios.get(`https://veryeasyhr.herokuapp.com/api/v1/employee/attendance/mylist/${month + 1}/${year}?page=${page}`, {
+        const x = await axios.get(`/api/v1/employee/attendance/mylist/${month + 1}/${year}?page=${page}`, {
             withCredentials: true
         });
 
@@ -70,12 +70,9 @@ export const myEmployeeAttendence = (employee, month, year) => async (dispatch) 
     try {
         dispatch({ type: GET_SINGLE_ATTENDENCE_REQUEST });
 
-        const { data } = await axios.get(
-            `https://veryeasyhr.herokuapp.com/api/v1/employee/attendance/mylist/${month + 1}/${year}/${employee}`,
-            {
-                withCredentials: true
-            }
-        );
+        const { data } = await axios.get(`/api/v1/employee/attendance/mylist/${month + 1}/${year}/${employee}`, {
+            withCredentials: true
+        });
 
         dispatch({
             type: GET_SINGLE_ATTENDENCE_SUCCESS,
@@ -101,7 +98,7 @@ export const myEmployeeAttendenceOvertime = (employee, attendanceMonth, attendan
             }
         };
         const { data } = await axios.post(
-            `https://veryeasyhr.herokuapp.com/api/v1/employee/attendance/updateovertime`,
+            `/api/v1/employee/attendance/updateovertime`,
             { employee, attendanceMonth, attendanceYear, overtime, date },
             config
         );
