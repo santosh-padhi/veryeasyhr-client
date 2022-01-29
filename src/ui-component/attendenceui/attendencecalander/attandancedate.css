@@ -1,0 +1,64 @@
+.fc-today-button{
+    border:  0.5px solid #000000 !important;
+    background-color: transparent !important;
+    color: black !important;
+    content: 'Today' !important;
+    order: 2;
+    margin-left: 40px !important;
+    padding: 0px 25px !important;
+}
+.fc-toolbar-chunk{
+    display: flex !important;
+    width: 100%;
+    justify-content: right;
+}
+.fc-button-group{
+    order: 1;
+}
+.fc-prev-button{
+    border:  0.5px solid #000000 !important;
+    background-color: transparent !important;
+    color: black !important;
+    margin-right: 10px !important;
+}
+.fc-next-button{
+    border:  0.5px solid #000000 !important;
+    background-color: transparent !important;
+    color: black !important;
+    margin-left: 10px !important;
+}
+.fc-daygrid-day{
+    height: 0px !important;
+    border: 0.5px solid black !important;
+    background-color: transparent !important;
+
+}
+.fc-daygrid-day-frame{
+    padding: 20px !important;
+}
+.fc-daygrid-day-top{
+    font-size: 2.8em !important;
+    text-align: left !important;
+}
+.fc-toolbar-chunk:first-child{
+    order: 3 !important;
+width: 40%;
+}
+.fc-col-header-cell{
+    background-color: transparent !important;
+    border: 0.5px solid black !important;
+    padding: 10px !important;
+}
+.fc-daygrid{
+    background: transparent !important;
+}
+.fc-theme-standard{
+    background-color: transparent !important;
+   
+}
+.green{
+    background-color: #0c930054 !important;
+}
+.red{
+    background-color: #d7461a70 !important;
+}

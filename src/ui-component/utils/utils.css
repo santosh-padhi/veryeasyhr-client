@@ -1,0 +1,32 @@
+.filter-btn {
+    padding: 11px 22px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: black;
+    font-size: 1.1em;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 1px 2px 0px lightgrey;
+}
+.filter-btn svg {
+    margin-left: 10px;
+}
+.gray-button{
+    padding: 11px 22px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: black;
+    font-size: 1.1em;
+    background-color: #E6E8F3;
+    border: none;
+    cursor: pointer;
+    box-shadow: 1px 2px 0px lightgrey;
+}
+.gray-button svg {
+    margin-right: 10px;
+}
