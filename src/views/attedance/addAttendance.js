@@ -43,90 +43,9 @@ const AddAttendance = () => {
     console.log(orders);
 
     const [successes, setsuccess] = useState('success');
-    const [text, settext] = useState('Successfully Added!');
-    const [state, setState] = React.useState({
-        open: false,
-        vertical: 'top',
-        horizontal: 'center'
-    });
+ 
     const { vertical, horizontal, open } = state;
 
-    const handleClose = () => {
-        setState({ ...state, open: false });
-    };
-
-    const [selectFile, setselectFile] = useState(null);
-
-    const onFileChange = (event) => {
-        // Update the state
-        setselectFile(event.target.files[0]);
-    };
-
-    const onFileUpload = () => {
-        // Create an object of formData
-        const csvData = new FormData();
-        csvData.append('file', selectFile);
-        // Request made to the backend api
-        // Send formData object
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                withCredentials: true
-            }
-        };
-        console.log(selectFile);
-        axios
-            .post('/api/v1/employee/attendance/csv', csvData, config)
-            .then((res) => {
-                console.log(res);
-                settext('File upload successfully!');
-                setsuccess('success');
-                setState({
-                    open: true,
-                    ...{
-                        vertical: 'top',
-                        horizontal: 'right'
-                    }
-                });
-            })
-            .catch((err) => {
-                console.log(err);
-                settext('Error!');
-                setsuccess('error');
-                setState({
-                    open: true,
-                    ...{
-                        vertical: 'top',
-                        horizontal: 'right'
-                    }
-                });
-            });
-    };
-
-    useEffect(() => {
-        dispatch(myEmployee(page));
-        if (error) {
-            console.log(error);
-            dispatch(clearErrors());
-        }
-    }, [dispatch, page]);
-
-    const handleChange = (event, value) => {
-        if (value > largestPage) {
-            setLargestPage(value);
-        }
-        setPage(value);
-    };
-    const handleSwitch = (date, x) => {
-        setDisabled(false);
-        setDate(date);
-        setSelectToday(x);
-    };
-    return (
-        <StyledMainCard>
-            <AttendanceTopbar
-                name="Add Attendance"
-                search="true"
                 date="true"
                 filter="true"
                 today="true"
@@ -135,33 +54,7 @@ const AddAttendance = () => {
             />
             <hr style={{ color: 'white' }} />
             <div style={{ float: 'right' }}>
-                <label
-                    htmlFor="form_input"
-                    className="form_label"
-                    style={{
-                        background: '#1dd1a1',
-                        borderRadius: '35px',
-                        cursor: 'pointer',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        height: '50px',
-                        width: '220px',
-                        marginRight: '10px'
-                    }}
-                >
-                    <input
-                        type="file"
-                        onChange={onFileChange}
-                        id="form_input"
-                        className="form_input"
-                        style={{ width: '10px', height: '10px', opacity: 0, visibility: 'hidden' }}
-                    />
-                    <FileUploadIcon className="form_icon" style={{ marginRight: '5px', color: 'white' }} />
-                    <span className="form_text" style={{ fontWeight: 600, fontSize: '18px', color: '#fff' }}>
-                        Choose a CSV File
-                    </span>
-                </label>
+               
                 <UploadButton onClick={onFileUpload} type="submit">
                     Upload!
                 </UploadButton>
@@ -193,40 +86,7 @@ const AddAttendance = () => {
                                     <TableCell align="center">{item?.companyDetails?.UAN}</TableCell>
                                     <TableCell align="center">{item?.personalDetails?.fullName}</TableCell>
                                     <TableCell align="center">{formatDate(item?.companyDetails?.joiningDate)}</TableCell>
-                                    <TableCell align="center">{item?.personalDetails?.mobileNo}</TableCell>
-                                    <TableCell align="center">{item?.companyDetails?.designation}</TableCell>
-                                    <TableCell align="center">{item?.companyDetails?.selectWages}</TableCell>
-                                    <TableCell align="center">
-                                        <BasicSwitch
-                                            disabled={disabled}
-                                            data={item}
-                                            largest={largestPage}
-                                            page={page}
-                                            date={date}
-                                            index={index}
-                                            selectToday={selectToday}
-                                        />
-                                    </TableCell>
-                                </StyledTableRow>
-                            ))}
-                        </TableBody>
-                    </StyledTable>
-                    <Pagination
-                        count={Math.floor(orders?.employeeCount / 10) + 1}
-                        color="primary"
-                        style={{ float: 'right' }}
-                        page={page}
-                        onChange={handleChange}
-                    />
-                </StyledContainer>
-            </Typography>
-            <Snackbar
-                anchorOrigin={{ vertical, horizontal }}
-                open={open}
-                onClose={handleClose}
-                autoHideDuration={3000}
-                key={vertical + horizontal}
-            >
+                                   
                 <Alert onClose={handleClose} severity={successes} sx={{ width: '100%' }}>
                     {text}
                 </Alert>
